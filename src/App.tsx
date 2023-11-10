@@ -21,16 +21,8 @@ function App() {
     <div>
       <h1>Hello Colors</h1>
       <div style={{ display: "flex" }}>
-        <SketchPicker
-          color={textColor}
-          alpha={true}
-          onChange={handleTextColorChange}
-        />
-        <SketchPicker
-          color={bgColor}
-          alpha={true}
-          onChange={handleBgColorChange}
-        />
+        <SketchPicker color={textColor} onChange={handleTextColorChange} />
+        <SketchPicker color={bgColor} onChange={handleBgColorChange} />
       </div>
       <div
         style={{
