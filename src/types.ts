@@ -5,8 +5,6 @@ export interface ButtonStyle {
   hoverColor: string;
   activeColor: string;
   borderColor: string;
-  bold: boolean;
-  oblique: boolean;
 }
 
 export const getDefaultButtonStyle = (): ButtonStyle => {
@@ -17,7 +15,5 @@ export const getDefaultButtonStyle = (): ButtonStyle => {
     hoverColor: "#4484e4",
     activeColor: "#377ce4",
     borderColor: "#377ce4",
-    bold: false,
-    oblique: false,
   };
 };

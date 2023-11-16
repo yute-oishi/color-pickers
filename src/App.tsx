@@ -1,6 +1,6 @@
 import React from "react";
 import { ColorResult, SketchPicker, TwitterPicker } from "react-color";
-import { Box, Grid, Button, IconButton } from "@mui/material";
+import { Grid, Button, IconButton, TextField } from "@mui/material";
 import plusSVG from "./assets/plus.svg";
 import CopyButton from "./Components/CopyButton";
 import { background } from "./styles";
@@ -24,16 +24,14 @@ function App() {
   ) => {
     const colorHex = `${newColor.hex}${decimalToHex(newColor.rgb.a || 0)}`;
     const newButtons = [...buttons];
-    if (key !== "bold" && key !== "oblique") {
-      newButtons[id][key] = colorHex;
-      setButtons(newButtons);
-    }
+    newButtons[id][key] = colorHex;
+    setButtons(newButtons);
   };
 
   const getButtonStyle = (id: number) => {
     return {
       borderRadius: 2,
-      m: 1,
+      m: 1.2,
       color: buttons[id].color,
       backgroundColor: buttons[id].bgColor,
       height: "3em",
@@ -90,6 +88,21 @@ function App() {
       <Button sx={{ color: "blue", backgroundColor: "lightBlue" }}>
         コード表示
       </Button>
+      <br />
+      <TextField
+        sx={{ backgroundColor: "#F6F6F6" }}
+        variant="outlined"
+        defaultValue={buttons[focusId].text}
+        key={focusId}
+        onChange={(
+          event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+        ) => {
+          const text = event.target.value;
+          const newButtons = [...buttons];
+          newButtons[focusId].text = text;
+          setButtons(newButtons);
+        }}
+      />
       <Grid container>
         <div
           style={{
@@ -115,6 +128,7 @@ function App() {
           }}
         >
           背景{buttons[focusId].bgColor}
+          <CopyButton text={buttons[focusId].bgColor} />
           <SketchPicker
             color={buttons[focusId].bgColor}
             onChange={(color: ColorResult) => {
@@ -130,6 +144,7 @@ function App() {
           }}
         >
           ホバー時{buttons[focusId].hoverColor}
+          <CopyButton text={buttons[focusId].hoverColor} />
           <SketchPicker
             color={buttons[focusId].hoverColor}
             onChange={(color: ColorResult) => {
@@ -145,6 +160,7 @@ function App() {
           }}
         >
           クリック時{buttons[focusId].activeColor}
+          <CopyButton text={buttons[focusId].activeColor} />
           <SketchPicker
             color={buttons[focusId].activeColor}
             onChange={(color: ColorResult) => {
@@ -160,6 +176,7 @@ function App() {
           }}
         >
           ボーダー{buttons[focusId].borderColor}
+          <CopyButton text={buttons[focusId].borderColor} />
           <SketchPicker
             color={buttons[focusId].borderColor}
             onChange={(color: ColorResult) => {
@@ -173,14 +190,37 @@ function App() {
         sx={{
           backgroundColor: bgColor,
           borderRadius: 8,
-          p: "1em",
+          p: 2,
+          my: 2,
           alignItems: "center",
         }}
       >
-        <Button variant="contained" sx={getButtonStyle(0)}>
-          ボタン
-        </Button>
-        <IconButton onClick={() => {}}>
+        {buttons.map((_, index) => (
+          <Button
+            key={index}
+            variant="contained"
+            sx={
+              index !== focusId
+                ? getButtonStyle(index)
+                : {
+                    ...getButtonStyle(index),
+                    top: "-8px",
+                    fontWeight: "bold",
+                  }
+            }
+            onClick={() => {
+              setFocusId(index);
+            }}
+          >
+            {buttons[index].text}
+          </Button>
+        ))}
+
+        <IconButton
+          onClick={() => {
+            setButtons([...buttons, getDefaultButtonStyle()]);
+          }}
+        >
           <img src={plusSVG} />
         </IconButton>
       </Grid>
