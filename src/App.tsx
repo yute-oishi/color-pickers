@@ -5,8 +5,12 @@ import { background } from "@/styles";
 import ButtonsDisplayBox from "@/Components/ButtonsDisplayBox";
 import ColorPickers from "@/Components/ColorPickers";
 import FocusButtonTextField from "./Components/FocusButtonTextField";
+import { useRecoilState } from "recoil";
+import { buttonsState, focusIdState } from "@/atoms";
 
 function App() {
+  const [buttons, setButtons] = useRecoilState(buttonsState);
+  const [focusId] = useRecoilState(focusIdState);
   const [bgDisplay, setBgDisplay] = React.useState<boolean>(false);
   const [bgColor, setBgColor] = React.useState<string>("#FFFFFF");
 
@@ -21,14 +25,18 @@ function App() {
     setBgDisplay(false);
   };
 
+  const handleCopyButton = () => {
+    setButtons([...buttons, { ...buttons[focusId] }]);
+  };
+
   return (
     <div style={background}>
-      <h1>Hello Colors</h1>
+      <h1>Color Buttons</h1>
       <Button
         sx={{ color: "blue", backgroundColor: "lightBlue" }}
         onClick={handleClickBgSelect}
       >
-        全体背景色
+        背景色設定
       </Button>
       {bgDisplay ? (
         <div style={{ position: "absolute", zIndex: "2" }}>
@@ -47,8 +55,11 @@ function App() {
           />
         </div>
       ) : null}
-      <Button sx={{ color: "blue", backgroundColor: "lightBlue" }}>
-        選択中を複製
+      <Button
+        sx={{ color: "blue", backgroundColor: "lightBlue" }}
+        onClick={handleCopyButton}
+      >
+        複製
       </Button>
       <Button sx={{ color: "blue", backgroundColor: "lightBlue" }}>
         コード表示
