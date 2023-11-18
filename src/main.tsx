@@ -4,6 +4,9 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { RecoilRoot } from "recoil";
 
 export const theme = createTheme({
+  typography: {
+    fontFamily: "Work Sans,Noto Sans JP",
+  },
   components: {
     MuiButton: {
       styleOverrides: {
@@ -17,7 +20,7 @@ export const theme = createTheme({
 });
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <div style={{ fontFamily: "Noto Sans JP" }}>
+  <div style={{ fontFamily: "Work Sans, Noto Sans JP" }}>
     <ThemeProvider theme={theme}>
       <RecoilRoot>
         <App />
