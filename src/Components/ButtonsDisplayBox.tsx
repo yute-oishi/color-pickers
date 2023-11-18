@@ -1,15 +1,53 @@
 import plusSVG from "@/assets/plus.svg";
-import { Grid, Button, IconButton } from "@mui/material";
+import copyButtonSVG from "@/assets/copy_button.svg";
+import codeSVG from "@/assets/code.svg";
+import paletteSVG from "@/assets/palette.svg";
+import deleteSVG from "@/assets/delete.svg";
+import { ColorResult, CompactPicker } from "react-color";
+import { Grid, Button, IconButton, Box } from "@mui/material";
 import { useRecoilState } from "recoil";
 import { buttonsState, focusIdState } from "@/atoms";
-import { getDefaultButtonStyle } from "@/types";
+import { defaultButtonStyle } from "@/styles";
+import CustomTooltip from "./CustomTooltip";
+import React from "react";
+import FocusButtonTextField from "./FocusButtonTextField";
+import CodeModal from "./CodeModal";
 
-const ButtonsDisplayBox = ({ bgColor }: { bgColor: string }) => {
+const ButtonsDisplayBox = () => {
   const [buttons, setButtons] = useRecoilState(buttonsState);
   const [focusId, setFocusId] = useRecoilState(focusIdState);
+  const [bgColor, setBgColor] = React.useState<string>("#FFFFFF");
+  const [modalOpen, setModalOpen] = React.useState<boolean>(false);
+
+  const handleModalOpen = () => setModalOpen(true);
+
+  const handleCopyButton = () => {
+    setButtons([...buttons, { ...buttons[focusId] }]);
+  };
+  const handleDeleteButton = () => {
+    if (buttons.length !== 1) {
+      if (focusId === buttons.length - 1) {
+        setFocusId(focusId - 1);
+      }
+      setButtons(buttons.filter((_, index) => index !== focusId));
+    }
+  };
+  const handleClickBgSelect = () => {
+    setBgDisplay(true);
+  };
+
+  const handleCloseBgSelect = () => {
+    setBgDisplay(false);
+  };
+
+  const decimalToHex = (alpha: number) =>
+    alpha === 0 ? "00" : Math.round(255 * alpha).toString(16);
+
+  const [bgDisplay, setBgDisplay] = React.useState<boolean>(false);
 
   const getButtonStyle = (id: number) => {
     return {
+      textTransform: "none",
       borderRadius: 2,
       m: 1.2,
       color: buttons[id].color,
@@ -25,45 +63,97 @@ const ButtonsDisplayBox = ({ bgColor }: { bgColor: string }) => {
     };
   };
   return (
-    <Grid
-      container
-      sx={{
-        backgroundColor: bgColor,
-        borderRadius: 8,
-        p: 2,
-        my: 2,
-        alignItems: "center",
-      }}
-    >
-      {buttons.map((_, index) => (
-        <Button
-          key={index}
-          variant="contained"
-          sx={
-            index !== focusId
-              ? getButtonStyle(index)
-              : {
-                  ...getButtonStyle(index),
-                  top: "-8px",
-                  fontWeight: "bold",
-                }
-          }
-          onClick={() => {
-            setFocusId(index);
+    <div>
+      <CodeModal open={modalOpen} setOpen={setModalOpen} />
+      {bgDisplay ? (
+        <div
+          style={{
+            position: "absolute",
+            zIndex: "2",
           }}
         >
-          {buttons[index].text}
-        </Button>
-      ))}
-
-      <IconButton
-        onClick={() => {
-          setButtons([...buttons, getDefaultButtonStyle()]);
+          <div style={{ position: "absolute", left: "60px", top: "-36px" }}>
+            <div
+              style={{
+                position: "fixed",
+                inset: "0",
+              }}
+              onClick={handleCloseBgSelect}
+            />
+            <CompactPicker
+              color={bgColor}
+              onChange={(color: ColorResult) => {
+                setBgColor(`${color.hex}${decimalToHex(color.rgb.a || 0)}`);
+              }}
+            />
+          </div>
+        </div>
+      ) : null}
+      <div style={{ height: "30px" }}></div>
+      <Grid
+        sx={{
+          backgroundColor: bgColor,
+          borderRadius: 8,
+          p: 2,
+          my: 2,
+          alignItems: "center",
         }}
       >
-        <img src={plusSVG} />
-      </IconButton>
-    </Grid>
+        <Box sx={{ display: "flex", mb: 2 }}>
+          <FocusButtonTextField />
+          <CustomTooltip title="ランダムなテキスト、色でボタンを作成します。">
+            <IconButton
+              sx={{ p: 0, mx: 0.5 }}
+              onClick={() => {
+                setButtons([...buttons, defaultButtonStyle]);
+              }}
+            >
+              <img src={plusSVG} />
+            </IconButton>
+          </CustomTooltip>
+          <CustomTooltip title="選択中のボタンを複製します。">
+            <IconButton onClick={handleCopyButton} sx={{ p: 0, mx: 1 }}>
+              <img src={copyButtonSVG} />
+            </IconButton>
+          </CustomTooltip>
+          <CustomTooltip title="選択中のボタンのReactコードを表示します。">
+            <IconButton sx={{ p: 0, mx: 1 }} onClick={handleModalOpen}>
+              <img src={codeSVG} />
+            </IconButton>
+          </CustomTooltip>
+          <CustomTooltip title="このエリアの背景色を変更します。">
+            <IconButton onClick={handleClickBgSelect} sx={{ p: 0, mx: 1 }}>
+              <img src={paletteSVG} />
+            </IconButton>
+          </CustomTooltip>
+          <CustomTooltip title="選択中のボタンを削除します。">
+            <IconButton onClick={handleDeleteButton} sx={{ p: 0, mx: 1 }}>
+              <img src={deleteSVG} />
+            </IconButton>
+          </CustomTooltip>
+        </Box>
+        {buttons.map((_, index) => (
+          <Button
+            key={index}
+            variant="contained"
+            sx={
+              index !== focusId
+                ? getButtonStyle(index)
+                : {
+                    ...getButtonStyle(index),
+                    top: "-8px",
+                    fontWeight: "bold",
+                  }
+            }
+            onClick={() => {
+              setFocusId(index);
+            }}
+          >
+            {buttons[index].text}
+          </Button>
+        ))}
+      </Grid>
+    </div>
   );
 };
 
