@@ -18,8 +18,8 @@ const FocusButtonTextField = () => {
 
   return (
     <div style={{ alignItems: "center", display: "flex", margin: 5 }}>
-      <div style={{ alignSelf: "center" }}>選択中のボタン：</div>
       <TextField
+        size="small"
         sx={{ backgroundColor: "#F6F6F6" }}
         variant="outlined"
         defaultValue={buttons[focusId].text}

@@ -7,7 +7,6 @@ import { buttonsState, focusIdState } from "@/atoms";
 
 const ColorPickers = () => {
   const [buttons, setButtons] = useRecoilState(buttonsState);
-
   const [focusId] = useRecoilState(focusIdState);
 
   const decimalToHex = (alpha: number) =>

@@ -1,9 +1,9 @@
-import { SxProps, Theme } from "@mui/material";
+import { ButtonStyle } from "./types";
 
 export const background: React.CSSProperties = {
   overflow: "auto",
   background:
-    "var(--linear, linear-gradient(45deg, #b1f5eccc 0%, #86d5f9cc 100%))",
+    "var(--linear, linear-gradient(140deg, #30c0ada3 0%, #EAEAEA 100%))",
   position: "fixed",
   top: 0,
   right: 0,
@@ -15,13 +15,12 @@ export const background: React.CSSProperties = {
 
 export const primaryColor: string = "#4484e4";
 export const primaryColorHover: string = "#446de3";
-export const getDefaultButtonStyle: SxProps<Theme> = {
-  textTransform: "none",
+
+export const defaultButtonStyle: ButtonStyle = {
+  text: "ボタン",
   color: "#FFFFFF",
-  backgroundColor: primaryColor,
-  borderRadius: 10,
-  border: "",
-  "&:hover": {
-    backgroundColor: primaryColorHover,
-  },
+  bgColor: "#446de3",
+  hoverColor: "#4484e4",
+  activeColor: "#377ce4",
+  borderColor: "#377ce4",
 };
