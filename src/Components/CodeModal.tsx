@@ -75,7 +75,6 @@ const CodeModal = ({
             label="Javascript"
             sx={{ color: "white", textTransform: "none" }}
           />
-          <Tab label="a" sx={{ color: "white", textTransform: "none" }} />
         </Tabs>
         <div
           style={{
