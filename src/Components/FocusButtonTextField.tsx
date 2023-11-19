@@ -3,7 +3,7 @@ import { TextField } from "@mui/material";
 import { useRecoilState } from "recoil";
 import { buttonsState, focusIdState } from "@/atoms";
 
-const FocusButtonTextField = () => {
+const FocusButtonTextField = ({ textId }: { textId: string }) => {
   const [buttons, setButtons] = useRecoilState(buttonsState);
   const [focusId] = useRecoilState(focusIdState);
 
@@ -23,7 +23,7 @@ const FocusButtonTextField = () => {
         sx={{ backgroundColor: "#F6F6F6" }}
         variant="outlined"
         defaultValue={buttons[focusId].text}
-        key={focusId + buttons[focusId].text}
+        key={focusId.toString() + " " + textId}
         onChange={handleTextChange}
       />
     </div>

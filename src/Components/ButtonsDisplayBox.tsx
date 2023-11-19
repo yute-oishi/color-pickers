@@ -12,6 +12,7 @@ import React from "react";
 import FocusButtonTextField from "./FocusButtonTextField";
 import CodeModal from "./CodeModal";
 import { getRandomButton } from "@/modules";
+import { v4 as uuidv4 } from "uuid";
 
 const decimalToHex = (alpha: number) =>
   alpha === 0 ? "00" : Math.round(255 * alpha).toString(16);
@@ -21,6 +22,7 @@ const ButtonsDisplayBox = () => {
   const [focusId, setFocusId] = useRecoilState(focusIdState);
   const [bgColor, setBgColor] = React.useState<string>("#FFFFFF");
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);
+  const [textId, setTextId] = React.useState<string>(uuidv4());
 
   const handleModalOpen = () => setModalOpen(true);
 
@@ -35,6 +37,7 @@ const ButtonsDisplayBox = () => {
       const newButtons = buttons.filter((_, index) => index !== focusId);
       setButtons(newButtons);
     }
+    setTextId(uuidv4());
   };
   const handleClickBgSelect = () => {
     setBgDisplay(true);
@@ -102,7 +105,7 @@ const ButtonsDisplayBox = () => {
         }}
       >
         <Box sx={{ display: "flex", mb: 2 }}>
-          <FocusButtonTextField />
+          <FocusButtonTextField textId={textId} />
           <CustomTooltip title="ランダムなテキスト、色でボタンを作成します。">
             <IconButton
               sx={{ p: 0, mx: 0.5 }}
