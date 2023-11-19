@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://yuteoishi.github.io/color-pickers/",
+  "homepage": "https://yuu-oishi.github.io/color-pickers/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
