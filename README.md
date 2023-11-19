@@ -1,27 +1,23 @@
-# React + TypeScript + Vite
+## 概要
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+様々なボタンを作って、カスタマイズして、コード化できる [Web サイト](https://yuu-oishi.github.io/color-pickers/)です！
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 個人用メモ
 
-## Expanding the ESLint configuration
+svg の型定義 (import エラー回避)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```
+# /custom.d.ts
+declare module "*.svg" {
+  const content: any;
+  export default content;
+}
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+```
+# tsconfig.json
+
+"include": ["src", "custom.d.ts"],
+```
