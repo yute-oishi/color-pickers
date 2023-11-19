@@ -3,7 +3,7 @@ import { ButtonStyle } from "./types";
 export const background: React.CSSProperties = {
   overflow: "auto",
   background:
-    "var(--linear, linear-gradient(140deg, #30c0ada3 0%, #EAEAEA 100%))",
+    "var(--linear, linear-gradient(140deg, #7ad8e7ff 0%, #EAEAEA 100%))",
   position: "fixed",
   top: 0,
   right: 0,

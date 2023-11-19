@@ -1,5 +1,14 @@
-import { getCodeTextJs, getCodeTextTs } from "@/modules";
-import { Box, IconButton, Modal, Tab, Tabs } from "@mui/material";
+import { getButtonColor, getCodeTextJs, getCodeTextTs } from "@/modules";
+import {
+  Box,
+  IconButton,
+  Modal,
+  SxProps,
+  Tab,
+  Tabs,
+  Theme,
+  useTheme,
+} from "@mui/material";
 import React from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { agate } from "react-syntax-highlighter/dist/esm/styles/hljs";
@@ -8,18 +17,6 @@ import { buttonsState, focusIdState } from "@/atoms";
 import infoSVG from "@/assets/info.svg";
 import CustomTooltip from "./CustomTooltip";
 
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 700,
-  border: "2px solid #AAAAAA",
-  backgroundColor: "#333333",
-  borderRadius: 4,
-  p: 1,
-};
-
 const CodeModal = ({
   open,
   setOpen,
@@ -27,6 +24,28 @@ const CodeModal = ({
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  // レスポンシブ対応
+  const theme = useTheme();
+  const style: SxProps<Theme> = {
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    [theme.breakpoints.up("lg")]: {
+      width: "40%",
+    },
+    [theme.breakpoints.down("lg")]: {
+      width: "50%",
+    },
+    [theme.breakpoints.down("md")]: {
+      width: "70%",
+    },
+    border: "2px solid #AAAAAA",
+    backgroundColor: "#333333",
+    borderRadius: 4,
+    p: 1,
+  };
+
   const [buttons] = useRecoilState(buttonsState);
   const [focusId] = useRecoilState(focusIdState);
   const [value, setValue] = React.useState(0);
@@ -56,6 +75,7 @@ const CodeModal = ({
             label="Javascript"
             sx={{ color: "white", textTransform: "none" }}
           />
+          <Tab label="a" sx={{ color: "white", textTransform: "none" }} />
         </Tabs>
         <div
           style={{
@@ -77,7 +97,9 @@ const CodeModal = ({
           <SyntaxHighlighter language="typescript" style={agate}>
             {value === 0
               ? getCodeTextTs(buttons[focusId])
-              : getCodeTextJs(buttons[focusId])}
+              : value === 1
+              ? getCodeTextJs(buttons[focusId])
+              : getButtonColor(buttons[focusId])}
           </SyntaxHighlighter>
         </div>
       </Box>

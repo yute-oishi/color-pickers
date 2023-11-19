@@ -23,7 +23,7 @@ const FocusButtonTextField = () => {
         sx={{ backgroundColor: "#F6F6F6" }}
         variant="outlined"
         defaultValue={buttons[focusId].text}
-        key={focusId}
+        key={focusId + buttons[focusId].text}
         onChange={handleTextChange}
       />
     </div>

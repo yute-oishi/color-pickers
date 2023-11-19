@@ -7,11 +7,14 @@ import { ColorResult, CompactPicker } from "react-color";
 import { Grid, Button, IconButton, Box } from "@mui/material";
 import { useRecoilState } from "recoil";
 import { buttonsState, focusIdState } from "@/atoms";
-import { defaultButtonStyle } from "@/styles";
 import CustomTooltip from "./CustomTooltip";
 import React from "react";
 import FocusButtonTextField from "./FocusButtonTextField";
 import CodeModal from "./CodeModal";
+import { getRandomButton } from "@/modules";
+
+const decimalToHex = (alpha: number) =>
+  alpha === 0 ? "00" : Math.round(255 * alpha).toString(16);
 
 const ButtonsDisplayBox = () => {
   const [buttons, setButtons] = useRecoilState(buttonsState);
@@ -29,7 +32,8 @@ const ButtonsDisplayBox = () => {
       if (focusId === buttons.length - 1) {
         setFocusId(focusId - 1);
       }
-      setButtons(buttons.filter((_, index) => index !== focusId));
+      const newButtons = buttons.filter((_, index) => index !== focusId);
+      setButtons(newButtons);
     }
   };
   const handleClickBgSelect = () => {
@@ -39,9 +43,6 @@ const ButtonsDisplayBox = () => {
   const handleCloseBgSelect = () => {
     setBgDisplay(false);
   };
-
-  const decimalToHex = (alpha: number) =>
-    alpha === 0 ? "00" : Math.round(255 * alpha).toString(16);
 
   const [bgDisplay, setBgDisplay] = React.useState<boolean>(false);
 
@@ -72,7 +73,7 @@ const ButtonsDisplayBox = () => {
             zIndex: "2",
           }}
         >
-          <div style={{ position: "absolute", left: "60px", top: "-36px" }}>
+          <div style={{ position: "absolute", left: "280px", top: "-42px" }}>
             <div
               style={{
                 position: "fixed",
@@ -94,8 +95,9 @@ const ButtonsDisplayBox = () => {
         sx={{
           backgroundColor: bgColor,
           borderRadius: 8,
+          border: "1px solid #DDDDDD",
           p: 2,
-          my: 2,
+          mb: 2,
           alignItems: "center",
         }}
       >
@@ -105,7 +107,7 @@ const ButtonsDisplayBox = () => {
             <IconButton
               sx={{ p: 0, mx: 0.5 }}
               onClick={() => {
-                setButtons([...buttons, defaultButtonStyle]);
+                setButtons([...buttons, getRandomButton()]);
               }}
             >
               <img src={plusSVG} />
@@ -141,7 +143,7 @@ const ButtonsDisplayBox = () => {
                 ? getButtonStyle(index)
                 : {
                     ...getButtonStyle(index),
-                    top: "-8px",
+                    top: "-10px",
                     fontWeight: "bold",
                   }
             }
