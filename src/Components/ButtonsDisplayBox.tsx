@@ -3,6 +3,7 @@ import copyButtonSVG from "@/assets/copy_button.svg";
 import codeSVG from "@/assets/code.svg";
 import paletteSVG from "@/assets/palette.svg";
 import deleteSVG from "@/assets/delete.svg";
+import saveSVG from "@/assets/save.svg";
 import { ColorResult, CompactPicker } from "react-color";
 import { Grid, Button, IconButton, Box } from "@mui/material";
 import { useRecoilState } from "recoil";
@@ -13,6 +14,8 @@ import FocusButtonTextField from "./FocusButtonTextField";
 import CodeModal from "./CodeModal";
 import { getRandomButton } from "@/modules";
 import { v4 as uuidv4 } from "uuid";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const decimalToHex = (alpha: number) =>
   alpha === 0 ? "00" : Math.round(255 * alpha).toString(16);
@@ -47,6 +50,16 @@ const ButtonsDisplayBox = () => {
     setBgDisplay(false);
   };
 
+  const handleClickSave = () => {
+    const buttonsData = JSON.stringify(buttons);
+    localStorage.setItem("buttonsData", buttonsData);
+    toast("保存に成功しました。", {
+      position: "top-center",
+      autoClose: 600, // ミリ秒単位でトーストが表示される時間
+      hideProgressBar: true,
+    });
+  };
+
   const [bgDisplay, setBgDisplay] = React.useState<boolean>(false);
 
   const getButtonStyle = (id: number) => {
@@ -68,6 +81,7 @@ const ButtonsDisplayBox = () => {
   };
   return (
     <div>
+      <ToastContainer />
       <CodeModal open={modalOpen} setOpen={setModalOpen} />
       {bgDisplay ? (
         <div
@@ -76,7 +90,7 @@ const ButtonsDisplayBox = () => {
             zIndex: "2",
           }}
         >
-          <div style={{ position: "absolute", left: "280px", top: "-42px" }}>
+          <div style={{ position: "absolute", left: "420px", top: "-42px" }}>
             <div
               style={{
                 position: "fixed",
@@ -106,6 +120,11 @@ const ButtonsDisplayBox = () => {
       >
         <Box sx={{ display: "flex", mb: 2 }}>
           <FocusButtonTextField textId={textId} />
+          <CustomTooltip title="現在の状態を保存します。">
+            <IconButton onClick={handleClickSave} sx={{ p: 0, mx: 1 }}>
+              <img src={saveSVG} />
+            </IconButton>
+          </CustomTooltip>
           <CustomTooltip title="ランダムなテキスト、色でボタンを作成します。">
             <IconButton
               sx={{ p: 0, mx: 0.5 }}
