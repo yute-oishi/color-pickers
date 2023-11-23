@@ -24,7 +24,7 @@ const getButtonStyle = (button: ButtonStyle) => {
   };
 };
 
-const StrageLoadAskModal = ({
+const StorageLoadAskModal = ({
   open,
   setOpen,
 }: {
@@ -94,4 +94,4 @@ const StrageLoadAskModal = ({
   );
 };
 
-export default StrageLoadAskModal;
+export default StorageLoadAskModal;

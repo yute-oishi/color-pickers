@@ -2,7 +2,7 @@ import { background } from "@/styles";
 import ButtonsDisplayBox from "@/Components/ButtonsDisplayBox";
 import ColorPickers from "@/Components/ColorPickers";
 import React from "react";
-import StrageLoadAskModal from "./Components/StrageLoadAskModal";
+import StorageLoadAskModal from "./Components/StorageLoadAskModal";
 
 function App() {
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);
@@ -19,7 +19,7 @@ function App() {
   return (
     <div style={background}>
       <h1 style={{ color: "#333333" }}>Color Buttons</h1>
-      <StrageLoadAskModal open={modalOpen} setOpen={setModalOpen} />
+      <StorageLoadAskModal open={modalOpen} setOpen={setModalOpen} />
       <ButtonsDisplayBox />
       <ColorPickers />
     </div>
