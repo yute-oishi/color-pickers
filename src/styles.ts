@@ -1,4 +1,5 @@
-import { ButtonStyle } from "./types";
+import { ButtonStyle } from "@/modules/types";
+import { v4 as uuidv4 } from "uuid";
 
 export const background: React.CSSProperties = {
   overflow: "auto",
@@ -17,6 +18,7 @@ export const primaryColor: string = "#4484e4";
 export const primaryColorHover: string = "#446de3";
 
 export const defaultButtonStyle: ButtonStyle = {
+  id: uuidv4(),
   text: "ボタン",
   color: "#FFFFFF",
   bgColor: "#446de3",

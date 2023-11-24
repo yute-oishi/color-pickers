@@ -1,4 +1,5 @@
 export interface ButtonStyle {
+  id: string;
   text: string;
   color: string;
   bgColor: string;

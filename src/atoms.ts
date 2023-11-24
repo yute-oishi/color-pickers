@@ -1,6 +1,6 @@
 // recoil用のatom定義
 import { atom } from "recoil";
-import { ButtonStyle } from "./types";
+import { ButtonStyle } from "@/modules/types";
 import { defaultButtonStyle } from "./styles";
 
 export const buttonsState = atom<ButtonStyle[]>({

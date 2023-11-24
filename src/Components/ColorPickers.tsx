@@ -1,7 +1,7 @@
 import { ColorResult, SketchPicker } from "react-color";
 import { Grid } from "@mui/material";
 import CopyButton from "@/Components/CopyButton";
-import { ButtonStyle } from "@/types";
+import { ButtonStyle } from "@/modules/types";
 import { useRecoilState } from "recoil";
 import { buttonsState, focusIdState } from "@/atoms";
 

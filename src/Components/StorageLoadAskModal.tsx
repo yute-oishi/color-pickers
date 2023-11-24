@@ -1,5 +1,5 @@
 import { defaultButtonStyle } from "@/styles";
-import { ButtonStyle } from "@/types";
+import { ButtonStyle } from "@/modules/types";
 import { Box, Button, Modal, SxProps, Theme, useTheme } from "@mui/material";
 import { useRecoilState } from "recoil";
 import { buttonsState } from "@/atoms";

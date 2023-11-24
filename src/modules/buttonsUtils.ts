@@ -1,4 +1,5 @@
-import { ButtonStyle } from "./types";
+import { ButtonStyle } from "@/modules/types";
+import { v4 as uuidv4 } from "uuid";
 
 export const getCodeTextTs = (buttonProps: ButtonStyle): string => {
   return `import { Button, SxProps, Theme } from "@mui/material";
@@ -73,6 +74,7 @@ export const getRandomButton = (): ButtonStyle => {
       Math.floor(Math.random() * randomButtonColors.length)
     ],
     text: text,
+    id: uuidv4(),
   };
 };
 
@@ -239,6 +241,7 @@ const randomTextEn: string[] = [
 
 export const randomButtonColors: ButtonStyle[] = [
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#f9f9fbff",
     bgColor: "#446de3",
@@ -247,6 +250,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#377ce4",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#a8f7d2ff",
     bgColor: "#465644ff",
@@ -255,6 +259,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#9ecd99ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#107e4bff",
     bgColor: "#49ef2bff",
@@ -263,6 +268,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#2fc251ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ffffffff",
     bgColor: "#35c11dff",
@@ -271,6 +277,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#ddf2e3ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ffffffff",
     bgColor: "#3a8f2dff",
@@ -279,6 +286,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#ddf2e3ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ffffffff",
     bgColor: "#3f85b0ff",
@@ -287,6 +295,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#ddf2e3ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#d26bdfff",
     bgColor: "#e8d5e8ff",
@@ -295,6 +304,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#e8b6e8ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#6b1876ff",
     bgColor: "#ebb3ebff",
@@ -303,6 +313,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#9d799dff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#fce6ffff",
     bgColor: "#b53cb5ff",
@@ -311,6 +322,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#d9c5d9ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ebd8ebff",
     bgColor: "#804a80ff",
@@ -319,6 +331,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#370d37ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#000000ff",
     bgColor: "#e6ccd0ff",
@@ -327,6 +340,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#dfafb7ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#000000ff",
     bgColor: "#f9323cff",
@@ -335,6 +349,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#d5a3abff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#2a1414ff",
     bgColor: "#fb2929ff",
@@ -343,6 +358,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#f1d0d0ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ffeaeaff",
     bgColor: "#945050ff",
@@ -351,6 +367,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#f1d0d0ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#fff6f6ff",
     bgColor: "#8d0b0bff",
@@ -359,6 +376,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#f1d0d0ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#fbf9f9ff",
     bgColor: "#e34444ff",
@@ -367,6 +385,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#e43737ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#4a0b11ff",
     bgColor: "#f10e1dff",
@@ -375,6 +394,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#d5a3abff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#fcf6f7ff",
     bgColor: "#fe1236ff",
@@ -383,6 +403,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#dfafb7ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#c85367ff",
     bgColor: "#f9d1d6ff",
@@ -391,6 +412,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#f0c7ceff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#e3369bff",
     bgColor: "#f0bbddff",
@@ -399,6 +421,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#c89bb4ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#fdfcffff",
     bgColor: "#662bc2ff",
@@ -407,6 +430,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#d6d5f0ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#493584ff",
     bgColor: "#c6b3e3ff",
@@ -415,6 +439,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#8482dcff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#f2f0f7ff",
     bgColor: "#8850deff",
@@ -423,6 +448,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#6c68baff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#f7feffb3",
     bgColor: "#9d73dfff",
@@ -431,6 +457,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#cccaebff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#0132f9ff",
     bgColor: "#c8d2edff",
@@ -439,6 +466,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#8fb7f2ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#e5e9fbff",
     bgColor: "#0a48f0ff",
@@ -447,6 +475,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#8fb7f2ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#bec6edff",
     bgColor: "#0c266aff",
@@ -455,6 +484,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#8fb7f2ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ffffffff",
     bgColor: "#91a3d5ff",
@@ -463,6 +493,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#7094d0ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#eaeafeff",
     bgColor: "#06319fff",
@@ -471,6 +502,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#d7e1f0ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#128989ff",
     bgColor: "#1df1f1ff",
@@ -479,6 +511,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#8fccf2ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#d1f4f4ff",
     bgColor: "#17b3b3ff",
@@ -487,6 +520,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#5c7586ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#156c6cff",
     bgColor: "#c1ededff",
@@ -495,6 +529,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#7094abff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#1c57dbff",
     bgColor: "#32b4f9ff",
@@ -503,6 +538,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#83c4d5ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#e3e3d7ff",
     bgColor: "#aab934ff",
@@ -511,6 +547,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#dddfafff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#5e5e39ff",
     bgColor: "#ced978ff",
@@ -519,6 +556,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#b4b763ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#8e8e39ff",
     bgColor: "#dffd04ff",
@@ -527,6 +565,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#dcdea0ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#eaea77ff",
     bgColor: "#5f6c02ff",
@@ -535,6 +574,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#ecf166ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#fbfbf2ff",
     bgColor: "#8e9c2cff",
@@ -543,6 +583,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#ecf166ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#7f5708ff",
     bgColor: "#deb668ff",
@@ -551,6 +592,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#c4ae7cff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#f7eedaff",
     bgColor: "#ffa800ff",
@@ -559,6 +601,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#c4ae7cff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#957530ff",
     bgColor: "#e5a72aff",
@@ -567,6 +610,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#f2e7ceff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ecddbfff",
     bgColor: "#9f6b02ff",
@@ -575,6 +619,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#f2e7ceff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#dec083ff",
     bgColor: "#644301ff",
@@ -583,6 +628,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#f2e7ceff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#3c3424ff",
     bgColor: "#deab46ff",
@@ -591,6 +637,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#f2e7ceff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#0c1b19ff",
     bgColor: "#25f4f4ff",
@@ -599,6 +646,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#7edae3ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#0e1b0cff",
     bgColor: "#4bf425ff",
@@ -607,6 +655,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#8de37eff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#0c181bff",
     bgColor: "#25edf4ff",
@@ -615,6 +664,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#7ed8e3ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#1a0c1bff",
     bgColor: "#c625f4ff",
@@ -623,6 +673,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#e37ee1ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#1a1b0cff",
     bgColor: "#dcf425ff",
@@ -631,6 +682,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#d7e37eff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#1b150cff",
     bgColor: "#f49925ff",
@@ -639,6 +691,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#e3b67eff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#f6f4efff",
     bgColor: "#c07617ff",
@@ -647,6 +700,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#81705dff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#eff6f5ff",
     bgColor: "#17c0a2ff",
@@ -655,6 +709,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#67978fff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#eff6f2ff",
     bgColor: "#17c050ff",
@@ -663,6 +718,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#67976bff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#eff0f6ff",
     bgColor: "#0129d9ff",
@@ -671,6 +727,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#677997ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#f6eff4ff",
     bgColor: "#d901aeff",
@@ -679,6 +736,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#976788ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#f4eff6ff",
     bgColor: "#9a01d9ff",
@@ -687,6 +745,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#976796ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#f5f6efff",
     bgColor: "#cfd901ff",
@@ -695,6 +754,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#959767ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#eff2f6ff",
     bgColor: "#0151d9ff",
@@ -703,6 +763,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#97b2deff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ffffffff",
     bgColor: "#6f8bdcff",
@@ -711,6 +772,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#377ce4",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ffffffff",
     bgColor: "#6fdcb6ff",
@@ -719,6 +781,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#37e4a8ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ffffffff",
     bgColor: "#8fdc6fff",
@@ -727,6 +790,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#7be437ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ffffffff",
     bgColor: "#ccdc6fff",
@@ -735,6 +799,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#d0e437ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ffffffff",
     bgColor: "#dcca6fff",
@@ -743,6 +808,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#e4c837ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ffffffff",
     bgColor: "#dc6f6fff",
@@ -751,6 +817,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#e43737ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ffffffff",
     bgColor: "#ff0000ff",
@@ -759,6 +826,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#b30f0fff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ffffffff",
     bgColor: "#ff00e7ff",
@@ -767,6 +835,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#a60fb3ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ffffffff",
     bgColor: "#7f00ffff",
@@ -775,6 +844,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#560fb3ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ffffffff",
     bgColor: "#00ff3bff",
@@ -783,6 +853,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#0fb341ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#373737ff",
     bgColor: "#a9a9a9ff",
@@ -791,6 +862,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#878787ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ebebebff",
     bgColor: "#545454ff",
@@ -799,6 +871,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#878787ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ebebebff",
     bgColor: "#010101ff",
@@ -807,6 +880,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#878787ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ffffffff",
     bgColor: "#010101ff",
@@ -815,6 +889,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#ffffffff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#343434ff",
     bgColor: "#ebebebff",
@@ -823,6 +898,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#c9c9c9ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#131313ff",
     bgColor: "#bfbfbfff",
@@ -831,6 +907,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#8c8c8cff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#000000ff",
     bgColor: "#ffffffff",
@@ -839,6 +916,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#d6d6d6ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#000000ff",
     bgColor: "#d339ffff",
@@ -847,6 +925,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#c48ec1ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#000000ff",
     bgColor: "#39f1ffff",
@@ -855,6 +934,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#8eb1c4ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#000000ff",
     bgColor: "#e1ff39ff",
@@ -863,6 +943,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#c4b68eff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#010202ff",
     bgColor: "#39fff8ff",
@@ -871,6 +952,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#8ec2c4ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#010201ff",
     bgColor: "#39ff90ff",
@@ -879,6 +961,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#92c48eff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#020201ff",
     bgColor: "#fffa39ff",
@@ -887,6 +970,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#c0c48eff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#FFFFFF",
     bgColor: "#446de3",
@@ -895,6 +979,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#377ce4",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#FFFFFF",
     bgColor: "#446de3",
@@ -903,6 +988,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#377ce4",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#FFFFFF",
     bgColor: "#446de3",
@@ -911,6 +997,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#377ce4",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#FFFFFF",
     bgColor: "#446de3",
@@ -919,6 +1006,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#377ce4",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ffffffff",
     bgColor: "#010101ff",
@@ -927,6 +1015,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#ffffffff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ffffffff",
     bgColor: "#010101ff",
@@ -935,6 +1024,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#ffffffff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ffffffff",
     bgColor: "#6fdcb6ff",
@@ -943,6 +1033,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#37e4a8ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ffffffff",
     bgColor: "#6fdcb6ff",
@@ -951,6 +1042,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#37e4a8ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#ffffffff",
     bgColor: "#6fdcb6ff",
@@ -959,6 +1051,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#37e4a8ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#d26bdfff",
     bgColor: "#e8d5e8ff",
@@ -967,6 +1060,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#e8b6e8ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#df6b8bff",
     bgColor: "#e8d5daff",
@@ -975,6 +1069,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#e8b6bdff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#6b92dfff",
     bgColor: "#d5d5e8ff",
@@ -983,6 +1078,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#b6c7e8ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#6b92dfff",
     bgColor: "#d5d5e8ff",
@@ -991,6 +1087,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#b6c7e8ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#6bdfa6ff",
     bgColor: "#d5e8dfff",
@@ -999,6 +1096,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#b6e8bbff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#6bdfa6ff",
     bgColor: "#d5e8dfff",
@@ -1007,6 +1105,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#b6e8bbff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#c6d237ff",
     bgColor: "#e6e8d5ff",
@@ -1015,6 +1114,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#dfe8b6ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#c6d237ff",
     bgColor: "#e6e8d5ff",
@@ -1023,6 +1123,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#dfe8b6ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#3937d2ff",
     bgColor: "#dbd5e8ff",
@@ -1031,6 +1132,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#b8b6e8ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#3937d2ff",
     bgColor: "#dbd5e8ff",
@@ -1039,6 +1141,7 @@ export const randomButtonColors: ButtonStyle[] = [
     borderColor: "#b8b6e8ff",
   },
   {
+    id: uuidv4(),
     text: "ボタン",
     color: "#d23783ff",
     bgColor: "#e8d5deff",

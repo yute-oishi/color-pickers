@@ -1,4 +1,8 @@
-import { getButtonColor, getCodeTextJs, getCodeTextTs } from "@/modules";
+import {
+  getButtonColor,
+  getCodeTextJs,
+  getCodeTextTs,
+} from "@/modules/buttonsUtils";
 import {
   Box,
   IconButton,

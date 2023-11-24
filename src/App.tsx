@@ -2,7 +2,7 @@ import { background } from "@/styles";
 import ButtonsDisplayBox from "@/Components/ButtonsDisplayBox";
 import ColorPickers from "@/Components/ColorPickers";
 import React from "react";
-import StorageLoadAskModal from "./Components/StorageLoadAskModal";
+import StorageLoadAskModal from "@/Components/StorageLoadAskModal";
 
 function App() {
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);
@@ -10,9 +10,6 @@ function App() {
     const buttonsData = localStorage.getItem("buttonsData");
     if (buttonsData) {
       setModalOpen(true);
-      console.log("ローカルストレージにデータがあります:", buttonsData);
-    } else {
-      console.log("ローカルストレージにデータはありません");
     }
   }, []);
 
