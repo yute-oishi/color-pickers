@@ -2,7 +2,7 @@ import { defaultButtonStyle } from "@/styles";
 import { ButtonStyle } from "@/modules/types";
 import { Box, Button, Modal, SxProps, Theme, useTheme } from "@mui/material";
 import { useRecoilState } from "recoil";
-import { buttonsState } from "@/atoms";
+import { buttonsState, lastSavedDataState } from "@/atoms";
 import React from "react";
 
 const getButtonStyle = (button: ButtonStyle) => {
@@ -32,6 +32,9 @@ const StorageLoadAskModal = ({
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [_, setButtons] = useRecoilState(buttonsState);
+
+  const [__, setLastSavedData] = useRecoilState(lastSavedDataState);
+
   const theme = useTheme();
   const style: SxProps<Theme> = {
     position: "absolute" as "absolute",
@@ -59,6 +62,7 @@ const StorageLoadAskModal = ({
     if (storedData) {
       const buttonsData = JSON.parse(storedData);
       setButtons(buttonsData);
+      setLastSavedData(storedData);
     }
     setOpen(false);
   };
