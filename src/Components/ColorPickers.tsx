@@ -3,107 +3,225 @@ import { Grid } from "@mui/material";
 import CopyButton from "@/Components/CopyButton";
 import { ButtonStyle } from "@/modules/types";
 import { useRecoilState } from "recoil";
-import { buttonsState, focusIdState } from "@/atoms";
+import {
+  buttonsState,
+  focusIdState,
+  backStackState,
+  forwardStackState,
+} from "@/atoms";
+import React from "react";
 
 const ColorPickers = () => {
   const [buttons, setButtons] = useRecoilState(buttonsState);
   const [focusId] = useRecoilState(focusIdState);
+  // 進む・戻るのための、前回のコンプリート状態の色を保持するステート変数
+  const [focusButtonStyle, setFocusButtonStyle] = React.useState<ButtonStyle>(
+    buttons[focusId]
+  );
+
+  // 処理最適化のため、選択中のボタンの色だけを保持する。
+  const [focusButtonColor, setFocusButtonColor] = React.useState<string>(
+    buttons[focusId].color
+  );
+  const [focusButtonBgColor, setFocusButtonBgColor] = React.useState<string>(
+    buttons[focusId].bgColor
+  );
+  const [focusButtonHoverColor, setFocusButtonHoverColor] =
+    React.useState<string>(buttons[focusId].hoverColor);
+  const [focusButtonActiveColor, setFocusButtonActiveColor] =
+    React.useState<string>(buttons[focusId].activeColor);
+  const [focusButtonBorderColor, setFocusButtonBorderColor] =
+    React.useState<string>(buttons[focusId].borderColor);
+
+  const [backStacks, setBackStacks] = useRecoilState(backStackState);
+  const [forwardStacks, setForwardStacks] = useRecoilState(forwardStackState);
+
+  const colorSettings = [
+    ["color", "文字色", focusButtonColor],
+    ["bgColor", "背景", focusButtonBgColor],
+    ["hoverColor", "カーソル時", focusButtonHoverColor],
+    ["activeColor", "クリック時", focusButtonActiveColor],
+    ["borderColor", "枠線", focusButtonBorderColor],
+  ];
+
+  React.useEffect(() => {
+    setFocusButtonStyle(buttons[focusId]);
+    setFocusButtonColor(buttons[focusId].color);
+    setFocusButtonBgColor(buttons[focusId].bgColor);
+    setFocusButtonHoverColor(buttons[focusId].hoverColor);
+    setFocusButtonActiveColor(buttons[focusId].activeColor);
+    setFocusButtonBorderColor(buttons[focusId].borderColor);
+  }, [buttons, backStacks, forwardStacks, focusId]);
 
   const decimalToHex = (alpha: number) =>
     alpha === 0 ? "00" : Math.round(255 * alpha).toString(16);
 
-  const handleChangeColor = (
+  const handleChangeColor = (newColor: ColorResult, key: keyof ButtonStyle) => {
+    let setState: React.Dispatch<React.SetStateAction<string>> =
+      setFocusButtonColor;
+    switch (key) {
+      case "bgColor":
+        setState = setFocusButtonBgColor;
+        break;
+      case "hoverColor":
+        setState = setFocusButtonHoverColor;
+        break;
+      case "activeColor":
+        setState = setFocusButtonActiveColor;
+        break;
+      case "borderColor":
+        setState = setFocusButtonBorderColor;
+        break;
+    }
+    setState(`${newColor.hex}${decimalToHex(newColor.rgb.a || 0)}`);
+  };
+
+  const handleChangeCompleteColor = (
     newColor: ColorResult,
-    id: number,
     key: keyof ButtonStyle
   ) => {
     const colorHex = `${newColor.hex}${decimalToHex(newColor.rgb.a || 0)}`;
+    const newFocusButtonStyle = { ...focusButtonStyle };
+    newFocusButtonStyle[key] = colorHex;
+    setBackStacks([
+      ...backStacks,
+      {
+        type: "button",
+        index: focusId,
+        color: focusButtonStyle,
+        newColor: newFocusButtonStyle,
+      },
+    ]);
+    setForwardStacks([]);
     const newButtons = [...buttons];
-    newButtons[id] = { ...newButtons[id], [key]: colorHex };
+    newButtons[focusId] = newFocusButtonStyle;
     setButtons(newButtons);
+    setFocusButtonStyle(newFocusButtonStyle);
   };
   return (
     <Grid container>
-      <div
+      {colorSettings.map((colorSetting, index) => (
+        <div
+          key={index}
+          style={{
+            margin: 10,
+            color: colorSetting[2],
+            textShadow: "1px 1px 1px #808080",
+          }}
+        >
+          {colorSetting[1]}
+          {colorSetting[2]}
+          <CopyButton text={colorSetting[2]} />
+          <SketchPicker
+            color={colorSetting[2]}
+            onChange={(color: ColorResult) => {
+              handleChangeColor(color, colorSetting[0] as keyof ButtonStyle);
+            }}
+            onChangeComplete={(color: ColorResult) => {
+              handleChangeCompleteColor(
+                color,
+                colorSetting[0] as keyof ButtonStyle
+              );
+            }}
+          />
+        </div>
+      ))}
+
+      {/* <div
         style={{
           margin: 10,
-          color: buttons[focusId].color,
+          color: focusButtonColor,
           textShadow: "1px 1px 1px #808080",
         }}
       >
-        文字色{buttons[focusId].color}
-        <CopyButton text={buttons[focusId].color} />
+        文字色{focusButtonColor}
+        <CopyButton text={focusButtonColor} />
         <SketchPicker
-          color={buttons[focusId].color}
+          color={focusButtonColor}
           onChange={(color: ColorResult) => {
-            handleChangeColor(color, focusId, "color");
+            handleChangeColor(color, "color");
+          }}
+          onChangeComplete={(color: ColorResult) => {
+            handleChangeCompleteColor(color, "color");
           }}
         />
       </div>
       <div
         style={{
           margin: 10,
-          color: buttons[focusId].bgColor,
+          color: focusButtonBgColor,
           textShadow: "1px 1px 1px #808080",
         }}
       >
-        背景{buttons[focusId].bgColor}
-        <CopyButton text={buttons[focusId].bgColor} />
+        背景{focusButtonBgColor}
+        <CopyButton text={focusButtonBgColor} />
         <SketchPicker
-          color={buttons[focusId].bgColor}
+          color={focusButtonBgColor}
           onChange={(color: ColorResult) => {
-            handleChangeColor(color, focusId, "bgColor");
+            handleChangeColor(color, "bgColor");
+          }}
+          onChangeComplete={(color: ColorResult) => {
+            handleChangeCompleteColor(color, "bgColor");
           }}
         />
       </div>
       <div
         style={{
           margin: 10,
-          color: buttons[focusId].hoverColor,
+          color: focusButtonHoverColor,
           textShadow: "1px 1px 1px #808080",
         }}
       >
-        ホバー時{buttons[focusId].hoverColor}
-        <CopyButton text={buttons[focusId].hoverColor} />
+        ホバー時{focusButtonHoverColor}
+        <CopyButton text={focusButtonHoverColor} />
         <SketchPicker
-          color={buttons[focusId].hoverColor}
+          color={focusButtonHoverColor}
           onChange={(color: ColorResult) => {
-            handleChangeColor(color, focusId, "hoverColor");
+            handleChangeColor(color, "hoverColor");
+          }}
+          onChangeComplete={(color: ColorResult) => {
+            handleChangeCompleteColor(color, "hoverColor");
           }}
         />
       </div>
       <div
         style={{
           margin: 10,
-          color: buttons[focusId].activeColor,
+          color: focusButtonActiveColor,
           textShadow: "1px 1px 1px #808080",
         }}
       >
-        クリック時{buttons[focusId].activeColor}
-        <CopyButton text={buttons[focusId].activeColor} />
+        クリック時{focusButtonActiveColor}
+        <CopyButton text={focusButtonActiveColor} />
         <SketchPicker
-          color={buttons[focusId].activeColor}
+          color={focusButtonActiveColor}
           onChange={(color: ColorResult) => {
-            handleChangeColor(color, focusId, "activeColor");
+            handleChangeColor(color, "activeColor");
+          }}
+          onChangeComplete={(color: ColorResult) => {
+            handleChangeCompleteColor(color, "activeColor");
           }}
         />
       </div>
       <div
         style={{
           margin: 10,
-          color: buttons[focusId].borderColor,
+          color: focusButtonBorderColor,
           textShadow: "1px 1px 1px #808080",
         }}
       >
-        ボーダー{buttons[focusId].borderColor}
-        <CopyButton text={buttons[focusId].borderColor} />
+        ボーダー{focusButtonBorderColor}
+        <CopyButton text={focusButtonBorderColor} />
         <SketchPicker
-          color={buttons[focusId].borderColor}
+          color={focusButtonBorderColor}
           onChange={(color: ColorResult) => {
-            handleChangeColor(color, focusId, "borderColor");
+            handleChangeColor(color, "borderColor");
+          }}
+          onChangeComplete={(color: ColorResult) => {
+            handleChangeCompleteColor(color, "borderColor");
           }}
         />
-      </div>
+      </div> */}
     </Grid>
   );
 };
