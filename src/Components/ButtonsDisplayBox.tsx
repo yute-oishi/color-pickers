@@ -95,7 +95,7 @@ const ButtonsDisplayBox = () => {
         setFocusId(newState.findIndex((b) => b.id === focusButtonId));
       }
     },
-    [buttons]
+    [buttons, focusId]
   );
 
   const handleModalOpen = () => setModalOpen(true);
