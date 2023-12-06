@@ -13,7 +13,7 @@ import forwardDisabledSVG from "@/assets/forward_disabled.svg";
 import deleteDisabledSVG from "@/assets/delete_disabled.svg";
 import saveDisabledSVG from "@/assets/save_disabled.svg";
 import { ColorResult, CompactPicker } from "react-color";
-import { Grid, Button, IconButton, Box } from "@mui/material";
+import { Grid, Button, IconButton } from "@mui/material";
 import { useRecoilState } from "recoil";
 import {
   buttonsState,
