@@ -359,7 +359,7 @@ const ButtonsDisplayBox = () => {
           alignItems: "center",
         }}
       >
-        <Box sx={{ display: "flex", mb: 2 }}>
+        <Grid container sx={{ display: "flex", mb: 2 }}>
           <FocusButtonTextField textId={textId} />
           <CustomTooltip title="現在の状態を保存します。">
             <IconButton
@@ -468,7 +468,7 @@ const ButtonsDisplayBox = () => {
               )}
             </IconButton>
           </CustomTooltip>
-        </Box>
+        </Grid>
         <DndContext onDragEnd={handleDragEnd} autoScroll={false}>
           <SortableContext
             items={buttons}
